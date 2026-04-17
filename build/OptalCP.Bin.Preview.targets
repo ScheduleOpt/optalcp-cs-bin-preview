@@ -1,0 +1,28 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!-- Detect the NuGet RID for the current platform -->
+  <PropertyGroup Condition="'$(RuntimeIdentifier)' != ''">
+    <_OptalCPBinRid>$(RuntimeIdentifier)</_OptalCPBinRid>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(RuntimeIdentifier)' == ''">
+    <_OptalCPBinRid Condition="$([MSBuild]::IsOSPlatform('Linux'))">linux-x64</_OptalCPBinRid>
+    <_OptalCPBinRid Condition="$([MSBuild]::IsOSPlatform('Windows'))">win-x64</_OptalCPBinRid>
+    <!-- macOS: use NETCoreSdkRuntimeIdentifier if available, otherwise default to osx-arm64 -->
+    <_OptalCPBinRid Condition="$([MSBuild]::IsOSPlatform('OSX')) And '$(NETCoreSdkRuntimeIdentifier)' != '' And $(NETCoreSdkRuntimeIdentifier.StartsWith('osx-'))">$(NETCoreSdkRuntimeIdentifier)</_OptalCPBinRid>
+    <_OptalCPBinRid Condition="$([MSBuild]::IsOSPlatform('OSX')) And '$(_OptalCPBinRid)' == ''">osx-arm64</_OptalCPBinRid>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <_OptalCPBinName Condition="$([MSBuild]::IsOSPlatform('Windows'))">optalcp.exe</_OptalCPBinName>
+    <_OptalCPBinName Condition="!$([MSBuild]::IsOSPlatform('Windows'))">optalcp</_OptalCPBinName>
+  </PropertyGroup>
+
+  <!-- Copy the native binary to the output directory -->
+  <ItemGroup Condition="'$(_OptalCPBinRid)' != ''">
+    <None Include="$(MSBuildThisFileDirectory)..\runtimes\$(_OptalCPBinRid)\native\$(_OptalCPBinName)"
+          Condition="Exists('$(MSBuildThisFileDirectory)..\runtimes\$(_OptalCPBinRid)\native\$(_OptalCPBinName)')"
+          CopyToOutputDirectory="PreserveNewest"
+          Link="$(_OptalCPBinName)" />
+  </ItemGroup>
+
+</Project>

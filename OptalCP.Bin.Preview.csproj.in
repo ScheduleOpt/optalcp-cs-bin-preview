@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>12.0</LangVersion>
+
+    <PackageId>OptalCP.Bin.Preview</PackageId>
+    <Version>@CNZ_VERSION@</Version>
+    <Company>OptalCP</Company>
+    <Product>OptalCP</Product>
+    <Description>OptalCP solver binary - Preview edition</Description>
+    <PackageTags>constraint-programming;optimization;scheduling;solver;operations-research</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OptalCP" Version="@CNZ_VERSION@" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+    <None Include="LICENSE.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <!-- Native binaries for all RIDs -->
+  <ItemGroup>
+    <Content Include="runtimes\**\*" Pack="true" PackagePath="runtimes" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <!-- .targets file for transitive consumers to copy native binary -->
+  <ItemGroup>
+    <None Include="build\OptalCP.Bin.Preview.targets" Pack="true" PackagePath="build" />
+    <None Include="build\OptalCP.Bin.Preview.targets" Pack="true" PackagePath="buildTransitive" />
+  </ItemGroup>
+
+</Project>
