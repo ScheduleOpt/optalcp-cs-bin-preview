@@ -4,14 +4,33 @@ Preview edition binaries for the OptalCP constraint programming solver.
 
 ## Installation
 
-Configure the ScheduleOpt NuGet source (one-time setup):
+### 1. Create a GitHub Personal Access Token
+
+This package is public, but GitHub Packages requires authentication even for
+public NuGet packages. Go to [github.com/settings/tokens](https://github.com/settings/tokens)
+and create a **classic** token (not fine-grained) with the `read:packages` scope.
+Copy the token value.
+
+See [GitHub's NuGet registry documentation](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-nuget-registry) for details.
+
+### 2. Configure the NuGet source (one-time setup)
 
 ```bash
 dotnet nuget add source "https://nuget.pkg.github.com/ScheduleOpt/index.json" \
-  --name ScheduleOpt --username YOUR_GITHUB_USERNAME --password YOUR_GITHUB_TOKEN
+  --name ScheduleOpt \
+  --username YOUR_GITHUB_USERNAME \
+  --password YOUR_GITHUB_TOKEN \
+  --store-password-in-clear-text
 ```
 
-Install the package:
+Replace `YOUR_GITHUB_USERNAME` with your GitHub username and `YOUR_GITHUB_TOKEN`
+with the token from step 1.
+
+> **Note:** `--store-password-in-clear-text` is required on Linux and macOS where
+> the .NET credential encryption is not available. The token is stored in
+> `~/.nuget/NuGet/NuGet.Config`.
+
+### 3. Install the package
 
 ```bash
 dotnet add package OptalCP.Bin.Preview
@@ -57,7 +76,7 @@ The full edition will automatically take priority over the preview edition.
 ## Supported Platforms
 
 - Linux (x86_64)
-- macOS (ARM64, x86_64)
+- macOS (ARM64)
 - Windows (x64)
 
 ## License
