@@ -58,7 +58,7 @@ using OptalCP;
 var model = new Model();
 // ... build your model ...
 
-var result = await Solver.SolveAsync(model);
+var result = model.Solve();
 Console.WriteLine($"Objective: {result.Objective}");
 ```
 
