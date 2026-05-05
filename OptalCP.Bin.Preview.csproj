@@ -7,20 +7,21 @@
     <LangVersion>12.0</LangVersion>
 
     <PackageId>OptalCP.Bin.Preview</PackageId>
-    <Version>2026.3.0</Version>
+    <Version>2026.4.0</Version>
     <Company>OptalCP</Company>
     <Product>OptalCP</Product>
     <Description>OptalCP solver binary - Preview edition</Description>
     <PackageTags>constraint-programming;optimization;scheduling;solver;operations-research</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/ScheduleOpt/optalcp-cs-bin-preview</RepositoryUrl>
 
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OptalCP" Version="2026.3.0" />
+    <PackageReference Include="OptalCP" Version="2026.4.0" />
   </ItemGroup>
 
   <ItemGroup>
