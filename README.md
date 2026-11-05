@@ -46,7 +46,7 @@ The Preview edition of OptalCP is a limited version that:
 - Is useful for evaluation and testing
 
 For full functionality, install `OptalCP.Bin` (full edition) or `OptalCP.Bin.Academic` (academic edition).
-Contact ScheduleOpt for licensing options (academic licenses are free).
+Contact Optal for licensing options (academic licenses are free).
 
 ## Usage
 

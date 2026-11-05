@@ -12,9 +12,19 @@
     <_OptalCPBinRid Condition="$([MSBuild]::IsOSPlatform('OSX')) And '$(_OptalCPBinRid)' == ''">osx-arm64</_OptalCPBinRid>
   </PropertyGroup>
 
+  <!-- The name follows the target RID, not the build host, so that publishing
+       for Windows from Linux still finds optalcp.exe: -->
   <PropertyGroup>
-    <_OptalCPBinName Condition="$([MSBuild]::IsOSPlatform('Windows'))">optalcp.exe</_OptalCPBinName>
-    <_OptalCPBinName Condition="!$([MSBuild]::IsOSPlatform('Windows'))">optalcp</_OptalCPBinName>
+    <_OptalCPBinName>optalcp</_OptalCPBinName>
+  </PropertyGroup>
+
+  <!-- Only win-x64 is shipped for Windows. On Windows, an SDK-style .NET
+       Framework project gets an inferred win-x86 RID (win7-x86 with the RID
+       graph). An x86 process can still start the x64 solver, and so can an
+       ARM64 one on Windows 11: -->
+  <PropertyGroup Condition="$(_OptalCPBinRid.StartsWith('win'))">
+    <_OptalCPBinRid>win-x64</_OptalCPBinRid>
+    <_OptalCPBinName>optalcp.exe</_OptalCPBinName>
   </PropertyGroup>
 
   <!-- Copy the native binary to the output directory -->

@@ -1,14 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <LangVersion>12.0</LangVersion>
 
     <PackageId>OptalCP.Bin.Preview</PackageId>
-    <Version>2026.4.0</Version>
-    <Company>OptalCP</Company>
+    <Version>2026.11.0</Version>
+    <Company>Optal SAS</Company>
     <Product>OptalCP</Product>
     <Description>OptalCP solver binary - Preview edition</Description>
     <PackageTags>constraint-programming;optimization;scheduling;solver;operations-research</PackageTags>
@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OptalCP" Version="2026.4.0" />
+    <PackageReference Include="OptalCP" Version="2026.11.0" />
   </ItemGroup>
 
   <ItemGroup>
